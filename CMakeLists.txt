@@ -3,6 +3,11 @@ project(LibUSB C)
 
 find_package(Threads REQUIRED)
 
+if (UNIX)
+set(CMAKE_C_FLAGS  "${CMAKE_C_FLAGS} -ludev")   # for usb driver
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ludev")
+endif()
+
 if (WIN32)
 set(OS_SOURCES
     os/threads_windows.h 
